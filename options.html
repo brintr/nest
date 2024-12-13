@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>Better Twitter Options</title>
   <style>
-    /* Body styling with border and rounded corners */
+
     body {
       font-family: Arial, sans-serif;
       padding: 20px;
@@ -14,7 +14,7 @@
       background-color: #121212; /* Dark mode background by default */
       color: #ffffff; /* Dark mode text color */
       border: 2px solid #1da1f2; /* Border around the entire program */
-      border-radius: 10px; /* Rounded corners for the border */
+      border-radius: 20px; /* Rounded corners for the border */
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow for a polished look */
     }
 
@@ -81,6 +81,28 @@
     input:checked + .slider:before {
       transform: translateX(14px);
     }
+
+    details {
+      background-color: #1da1f2;
+      color: white;
+      padding: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    details[open] {
+      background-color: #0e80a0; /* Darker shade when open */
+    }
+
+    details summary {
+      font-weight: bold;
+    }
+
+    iframe {
+      width: 100%;
+      height: 300px;
+      border: none;
+    }
   </style>
 </head>
 <body>
@@ -109,6 +131,19 @@
         <span class="slider"></span>
       </label>
     </div>
+
+    <!-- Dropdown for Developer profiles and GitHub link -->
+    <details>
+      <summary>Developers</summary>
+      <div>
+        <p>Follow the developers:</p>
+        <div>
+          <iframe src="https://platform.twitter.com/embed/Tweet.html?dnt=false&amp;id=1737314600025501184" frameborder="0"></iframe>
+          <iframe src="https://platform.twitter.com/embed/Tweet.html?dnt=false&amp;id=1645798582454577152" frameborder="0"></iframe>
+        </div>
+        <p><a href="https://github.com/brintr/better-twitter" target="_blank">GitHub Repository</a></p>
+      </div>
+    </details>
   </div>
   
   <script>
