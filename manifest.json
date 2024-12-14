@@ -1,27 +1,28 @@
 {
-    "manifest_version": 3,
-    "name": "Better Twitter",
-    "version": "1.0",
-    "description": "The better version of Twitter/X, blocking all paid promos, and more!",
-    "permissions": ["webRequest", "webRequestBlocking", "storage"],
-    "host_permissions": ["*://twitter.com/*"],
-    "background": {
+  "manifest_version": 3,
+  "name": "Better Twitter",
+  "version": "1.0",
+  "permissions": ["storage"],
+  "description": "The better version of Twitter/X, blocking all paid promos, and more!",
+  "permissions": ["webRequest", "webRequestBlocking", "storage"],
+  "host_permissions": ["*://twitter.com/*"],
+  "background": {
       "service_worker": "background.js"
-    },
-    "content_scripts": [
+  },
+  "content_scripts": [
       {
-        "matches": ["*://twitter.com/*"],
-        "js": ["content.js"],
-        "css": ["styles.css"]
+          "matches": ["*://twitter.com/*"],
+          "js": ["content.js"],
+          "css": ["styles.css"]
       }
-    ],
-    "icons": {
+  ],
+  "icons": {
       "48": "images/favicon.png",
       "128": "images/favicon.png"
-    },
-    "action": {
+  },
+  "action": {
       "default_popup": "options.html",
       "default_icon": "images/favicon.png"
-    }
-  }
-  
+  },
+  "options_page": "options.html"
+}

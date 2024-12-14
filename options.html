@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -110,59 +111,58 @@
   
   <div class="options-container">
     <label>
-      <input type="checkbox" id="block-ads" checked />
+      <input type="checkbox" id="block-ads" />
       Block Default Ads
     </label>
     
     <label>
-      <input type="checkbox" id="block-stake" checked />
+      <input type="checkbox" id="block-stake" />
       Block Stake
     </label>
     
     <label>
-      <input type="checkbox" id="block-crypto" />
-      Block Crypto
+      <input type="checkbox" id="replace-logo" />
+      Replace X Logo
     </label>
     
-    <div class="dark-mode-toggle">
-      <span>Dark Mode</span>
-      <label class="switch">
-        <input type="checkbox" id="dark-mode-toggle" checked />
-        <span class="slider"></span>
-      </label>
-    </div>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        // Fetch all checkbox elements
+        const blockAdsCheckbox = document.getElementById('block-ads');
+        const blockStakeCheckbox = document.getElementById('block-stake');
+        const replaceLogoCheckbox = document.getElementById('replace-logo');
 
-    <!-- Dropdown for Developer profiles and GitHub link -->
-    <details>
-      <summary>Developers</summary>
-      <div>
-        <p>Follow the developers:</p>
-        <div>
-          <iframe src="https://platform.twitter.com/embed/Tweet.html?dnt=false&amp;id=1737314600025501184" frameborder="0"></iframe>
-          <iframe src="https://platform.twitter.com/embed/Tweet.html?dnt=false&amp;id=1645798582454577152" frameborder="0"></iframe>
-        </div>
-        <p><a href="https://github.com/brintr/better-twitter" target="_blank">GitHub Repository</a></p>
-      </div>
-    </details>
+        // Restore saved states for each checkbox
+        chrome.storage.sync.get(['blockAds', 'blockStake', 'replaceLogo'], (result) => {
+          blockAdsCheckbox.checked = result.blockAds ?? false; // Default to unchecked
+          blockStakeCheckbox.checked = result.blockStake ?? false;
+          replaceLogoCheckbox.checked = result.replaceLogo ?? false;
+        });
+
+        // Save the state of 'blockAds' when changed
+        blockAdsCheckbox.addEventListener('change', (event) => {
+          chrome.storage.sync.set({ blockAds: event.target.checked });
+        });
+
+        // Save the state of 'blockStake' when changed
+        blockStakeCheckbox.addEventListener('change', (event) => {
+          chrome.storage.sync.set({ blockStake: event.target.checked });
+        });
+
+        // Save the state of 'replaceLogo' when changed
+        replaceLogoCheckbox.addEventListener('change', (event) => {
+          chrome.storage.sync.set({ replaceLogo: event.target.checked });
+        });
+      });
+    </script>
   </div>
-  
-  <script>
-    // Apply dark mode on page load if enabled
-    const darkModeToggle = document.getElementById("dark-mode-toggle");
 
-    const applyDarkMode = (enabled) => {
-      const body = document.body;
-      body.style.backgroundColor = enabled ? "#121212" : "white";
-      body.style.color = enabled ? "#ffffff" : "black";
-    };
-
-    // Set initial state
-    applyDarkMode(darkModeToggle.checked);
-
-    // Add event listener for toggling dark mode
-    darkModeToggle.addEventListener("change", (event) => {
-      applyDarkMode(event.target.checked);
-    });
-  </script>
+  <div class="dark-mode-toggle">
+    <span>Dark Mode</span>
+    <label class="switch">
+      <input type="checkbox" id="dark-mode-toggle" checked />
+      <span class="slider"></span>
+    </label>
+  </div>
 </body>
 </html>
