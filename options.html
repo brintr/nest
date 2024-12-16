@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <title>Better Twitter Options</title>
   <style>
-
     body {
       font-family: Arial, sans-serif;
       padding: 20px;
@@ -30,56 +29,16 @@
       gap: 15px;
     }
 
-    .dark-mode-toggle {
+    .status {
       display: flex;
-      align-items: center;
       justify-content: space-between;
+      align-items: center;
       padding: 5px 0;
-    }
-
-    .switch {
-      position: relative;
-      display: inline-block;
-      width: 34px;
-      height: 20px;
-    }
-
-    .switch input {
-      opacity: 0;
-      width: 0;
-      height: 0;
-    }
-
-    .slider {
-      position: absolute;
-      cursor: pointer;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: #ccc;
-      transition: 0.4s;
-      border-radius: 20px;
-    }
-
-    .slider:before {
-      position: absolute;
-      content: "";
-      height: 14px;
-      width: 14px;
-      left: 3px;
-      bottom: 3px;
-      background-color: white;
-      transition: 0.4s;
-      border-radius: 50%;
-    }
-
-    input:checked + .slider {
-      background-color: #1da1f2;
-    }
-
-    input:checked + .slider:before {
-      transform: translateX(14px);
+      border: 1px solid #1da1f2;
+      border-radius: 10px;
+      padding: 10px;
+      background-color: #1a1a1a;
+      color: white;
     }
 
     details {
@@ -109,38 +68,17 @@
   <h1>Better Twitter Settings</h1>
   
   <div class="options-container">
-    <label>
-      <input type="checkbox" id="block-ads" checked />
-      Block Default Ads
-    </label>
+    <div class="status" id="block-ads-status">
+      <span>Ad Blocking</span>
+      <span id="ads-status-text">Checking...</span>
+    </div>
     
-    <label>
-      <input type="checkbox" id="block-stake" checked />
-      Block Stake
-    </label>
-    
-<label>
-  <input type="checkbox" id="replace-logo" />
-  Replace X Logo
-</label>
+    <div class="status" id="block-stake-status">
+      <span>Stake Blocking</span>
+      <span id="stake-status-text">Checking...</span>
+    </div>
 
-<script>
-    // Restore the checkbox state on page load
-document.addEventListener('DOMContentLoaded', () => {
-  chrome.storage.sync.get(['replaceLogo'], (result) => {
-    const replaceLogoCheckbox = document.getElementById('replace-logo');
-    replaceLogoCheckbox.checked = result.replaceLogo || false; // Default to unchecked
-  });
-});
-
-// Save the checkbox state whenever it changes
-document.getElementById('replace-logo').addEventListener('change', (event) => {
-  chrome.storage.sync.set({ replaceLogo: event.target.checked });
-});
-
-</script>
-    
-    <div class="dark-mode-toggle">
+    <div class="status">
       <span>Dark Mode</span>
       <label class="switch">
         <input type="checkbox" id="dark-mode-toggle" checked />
@@ -154,12 +92,10 @@ document.getElementById('replace-logo').addEventListener('change', (event) => {
         <div>
           <p>Follow the developers:</p>
           <div style="display: flex; flex-direction: column; gap: 10px;">
-            <!-- Brint profile -->
             <a href="https://x.com/brint" target="_blank" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: white;">
               <img src="images/brint.jpg" alt="Brint's Profile Picture" style="width: 40px; height: 40px; border-radius: 50%; border: 2px solid #1da1f2;">
               <span>Brint</span>
             </a>
-            <!-- Amar profile -->
             <a href="https://x.com/amarchandracom" target="_blank" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: white;">
               <img src="images/wow_reasonably_small.gif" alt="Amar's Profile Picture" style="width: 40px; height: 40px; border-radius: 50%; border: 2px solid #1da1f2;">
               <span>Amar</span>
@@ -170,23 +106,5 @@ document.getElementById('replace-logo').addEventListener('change', (event) => {
       </details>      
   </div>
   
-  <script>
-    // Apply dark mode on page load if enabled
-    const darkModeToggle = document.getElementById("dark-mode-toggle");
-
-    const applyDarkMode = (enabled) => {
-      const body = document.body;
-      body.style.backgroundColor = enabled ? "#121212" : "white";
-      body.style.color = enabled ? "#ffffff" : "black";
-    };
-
-    // Set initial state
-    applyDarkMode(darkModeToggle.checked);
-
-    // Add event listener for toggling dark mode
-    darkModeToggle.addEventListener("change", (event) => {
-      applyDarkMode(event.target.checked);
-    });
-  </script>
 </body>
 </html>
