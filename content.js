@@ -1,6 +1,6 @@
 function hideBlockedAccounts() {
   const blockedAccounts = [
-"ineedrare", "realcrazyclip", "LeDauof", "CFCdennoh", "CFCms3",
+"ineedrare", "realcrazyclip", "LeDauof_", "CFCdennoh", "CFCms3",
     "saintmufc", "TheWavyRed", "FCBLamine", "CFCLavia", "PaamanuelUtd",
     "cfcpriiest", "CFCKen", "LSPN_FC", "FootbalIhub", "AFC_Jerry",
     "Utdjacobi", "fodenempire", "WORLDOFCLIPS", "willclapyogirl",
@@ -33,7 +33,20 @@ function hideBlockedAccounts() {
      "Psykosngl", "sp5dersflaw", "Stake", "Bigqadi", "flvckojamie", "tj0hny",
      "BicoTravis", "KillaMinga", "Shadygize", "KongoFuture", "lagilafrauds", 
      "notmtfights", "ThreadTImeline", "Khalerh", "UtdEIIis", "P2zzy", "TheMarescaEra", 
-     "hourlyFox", "slqttyo", "clippedszn", "WeAreMessi", "Santy03" 
+     "hourlyFox", "slqttyo", "clippedszn", "WeAreMessi", "Santy03", "AmorimEra_", "Den_UTD",
+     "crazyfvideos_", "imagesthatgohrd", "Cfc_optaseun", "CFC_Carneyy", "hoodcrazy_", "Fight_Master__",
+     "best_fights_ko", "_abochie", "cagiago_", "TheRSALad", "Atlantic_MUFC", "utdcoxy", "Cfc_optaseun",
+     "UtdBloke_", "CFCHana_", "sheilairenenarh", "aintbychanzz", "NoodleHairCR7", "ssstingbaee", "4everrthumbin",
+     "DJ_Scooby", "railedbygoyard", "rarriib", "bbyscar18", "_BambiDoe", "katianakayy", "lildedjanet", "lyssaxv",
+     "moxieonx", "khanstillday", "savnnhx", "brutalfightz", "queenbrii69", "Lavagrlx", "Lavaaxgrl", "Lavaagrlx",
+     "kaitvioletxo", "aylinxperez", "cyberlunax", "lavaxgrl", "saloxmelons", "bvchfvce", "AlexMonahan100",
+     "t7yuta", "worstclips", "rainbetcom", "2AM_Esports", "JohnRainbet", "777Silvio777", "cobainzanerain",
+     "RainbetSupport", "Arsenal_Chizzy", "dennizzer_k", "Cleverlydey4u", "CFC_OBED", "CFC_RaZer2", "Kaypoisson1", 
+     "Ruf_ayi", "akokc_davido", "ellyserwaaa", "0panaa_1", "kvng_baff", "MaameAmaAdoma", "stylyrr", "serwaa_wifey", 
+     "_khendrick", "unrulyking00", "unrulyking100", "Ghana_Ronaldo", "utdkobi", "AngiePosh5", "Kayjnr10", "I_Am_Winter", 
+     "huncho_wontmiss", "CFCKen_", "the_berneese_", "_wildclips", "freakouts4u", "CR7Brasil", "Kylian", "hourlypawz", 
+     "hourlyaura", "Alph_Utd", "prett_Nanie", "effizzzyy", "Khanstillday", "attah_akor", "anthonystilldey", "abazwhyllzz", 
+     "Abazzbackup", "BoazFCB", "davidchibuike_", "Queen_Aeesha"
   ];
 
 
