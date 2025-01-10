@@ -46,7 +46,18 @@ function hideBlockedAccounts() {
      "_khendrick", "unrulyking00", "unrulyking100", "Ghana_Ronaldo", "utdkobi", "AngiePosh5", "Kayjnr10", "I_Am_Winter", 
      "huncho_wontmiss", "CFCKen_", "the_berneese_", "_wildclips", "freakouts4u", "CR7Brasil", "Kylian", "hourlypawz", 
      "hourlyaura", "Alph_Utd", "prett_Nanie", "effizzzyy", "Khanstillday", "attah_akor", "anthonystilldey", "abazwhyllzz", 
-     "Abazzbackup", "BoazFCB", "davidchibuike_", "Queen_Aeesha"
+     "Abazzbackup", "BoazFCB", "davidchibuike_", "Queen_Aeesha", "deeore5", "clippedszn", "Talk2emPrada", "onlydubsX",
+     "utdcynical", "ClipHubz", "YorzTrulyJuice", "UtdBloke_", "FromBarrancas", "LFC_Laith", "MobyChe", "lancelotbryan",
+     "culersXmessi", "kofiadofo_69", "BenopaOnyx1", "AsieduMends", "C_Nkunku1", "_Stevemensa", "Ecl1psd", "Ac7ionMann",
+     "PookiesParadise", "AdinUpdate", "Kick_Champ", "FearedBuck", "PluggingClips", "LithiumClips", "DurkMUFC", "Pioneerszn",
+     "w3cuhh", "newsxx0", "MCI_Prince", "gingerkevin_r", "WHU_Lukee", "1realFormula", "CFC_Amiri", "kceethedrog", "tazer230",
+     "LFCDrewski", "Chava_senior", "Mainoosprop", "AtuhaireReecy", "UTDFondre", "afc_treyy", "cruciffiix", "iCuhtz", "LottaAura",
+     "buzzrclips", "SmokeBlx", "Rekapzz", "peaceiskeyyy", "clipmateX", "FantomMoonCats", "tommorrowboii", "Zoominclip",
+     "FCYildiz_", "Chopmonie_1", "KushyRMFC", "ColePalmer_0", "AFC_Shanti", "WegendC", "VdykCFC", "UTDEugenee",
+     "utdcounsellor", "Osy_barcafan", "Carrington_FCB", "RMCFsmithayo7", "ThePadrepr", "blxckEntertain", "LFC_Tandy",
+     "lfcnrj", "LamineZone", "_collins_a", "lfc_billie", "tf_papii", "naa_adjeleyAJ", "TheShed_End", "cabrel_miguel",
+     "AudsleyLFC", "imbrakoby", "CFCHana_", "JodsecretsHQ", "ConfesifyGH", "Honest30bgback", "Martha141377265",
+     "ibrahimramsey7", "freshonly_", "RMAsaremu_sei", "Afcmex", "jvstlucid", "Akinjoshua2017", "kodstrangeer"
   ];
 
 
