@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Nest: Better Ad Blocking</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      padding: 20px;
+      width: 300px;
+      margin: 0 auto;
+      background-color: #fff5f5;
+      color: #4c0519;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 0;
+      padding-top: 5px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 22px;
+      color: #e11d48;
+      font-weight: 500;
+    }
+
+    .title-separator {
+      color: #e11d48;
+      margin: 0 4px;
+      font-size: 22px;
+    }
+
+    .title-subtext {
+      color: #333333;
+      font-size: 22px;
+      font-weight: 500;
+    }
+
+    .developers {
+      margin-top: 15px;
+      padding-top: 15px;
+      border-top: 1px solid #ffe4e6;
+    }
+
+    .developer-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: #e11d48;
+      margin-bottom: 12px;
+      font-size: 15px;
+    }
+
+    .developer-link:hover {
+      color: #be123c;
+    }
+
+    .developer-link img {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 2px solid #ffe4e6;
+    }
+
+    .developer-label {
+      margin: 0 0 12px 0;
+      color: #9f1239;
+      font-size: 15px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Nest</h1>
+      <span class="title-separator">:</span>
+      <span class="title-subtext">Better Ad Blocking</span>
+    </div>
+
+    <div class="developers">
+      <p class="developer-label">Developed by:</p>
+      <a href="https://x.com/brint" target="_blank" class="developer-link">
+        <img src="images/brint.jpg" alt="Brint's Profile Picture">
+        <span>Brint</span>
+      </a>
+      <a href="https://x.com/amarchandracom" target="_blank" class="developer-link">
+        <img src="images/wow_reasonably_small.gif" alt="Amar's Profile Picture">
+        <span>Amar</span>
+      </a>
+    </div>
+  </div>
+  <script src="options.js"></script>
+</body>
+</html>
