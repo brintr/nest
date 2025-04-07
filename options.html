@@ -2,108 +2,88 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Nest</title>
+  <title>Nest - Test</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       padding: 20px;
-      width: 240px; /* Adjusted width for content */
-      height: auto;
-      margin: 0 auto; /* Center content horizontally */
-      background-color: #121212; /* Dark mode background by default */
-      color: #ffffff; /* Dark mode text color */
-      border: 2px solid #1da1f2; /* Border around the entire program */
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow for a polished look */
+      width: 300px;
+      margin: 0 auto;
+      background-color: #fff5f5;
+      color: #4c0519;
     }
 
-    h1 {
-      color: #1da1f2;
-      margin-bottom: 20px;
-      text-align: center;
-    }
-
-    .options-container {
+    .container {
       display: flex;
       flex-direction: column;
       gap: 15px;
     }
 
-    .status {
+    .header {
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      padding: 5px 0;
-      border: 1px solid #1da1f2;
-      padding: 10px;
-      background-color: #1a1a1a;
-      color: white;
+      margin-bottom: 0;
+      padding-top: 5px;
     }
 
-    details {
-      background-color: #1da1f2;
-      color: white;
-      padding: 10px;
-      border-radius: 5px;
-      cursor: pointer;
+    h1 {
+      margin: 0;
+      font-size: 22px;
+      color: #e11d48;
     }
 
-    details[open] {
-      background-color: #0e80a0; /* Darker shade when open */
+    .developers {
+      margin-top: 15px;
+      padding-top: 15px;
+      border-top: 1px solid #ffe4e6;
     }
 
-    details summary {
-      font-weight: bold;
+    .developer-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: #e11d48;
+      margin-bottom: 12px;
+      font-size: 15px;
     }
 
-    iframe {
-      width: 100%;
-      height: 300px;
-      border: none;
+    .developer-link:hover {
+      color: #be123c;
+    }
+
+    .developer-link img {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 2px solid #ffe4e6;
+    }
+
+    .developer-label {
+      margin: 0 0 12px 0;
+      color: #9f1239;
+      font-size: 15px;
     }
   </style>
 </head>
 <body>
-  <h1>Nest</h1>
-  
-  <div class="options-container">
-    <div class="status" id="block-ads-status">
-      <span>Ad Blocking</span>
-      <span id="ads-status-text">Checking...</span>
-    </div>
-    
-    
-    <div class="status" id="block-stake-status">
-      <span>Stake Blocking</span>
-      <span id="stake-status-text">Checking...</span>
+  <div class="container">
+    <div class="header">
+      <h1>Nest - Test</h1>
     </div>
 
-    <div class="status">
-      <span>Dark Mode</span>
-      <label class="switch">
-        <input type="checkbox" id="dark-mode-toggle" checked />
-        <span class="slider"></span>
-      </label>
+    <div class="developers">
+      <p class="developer-label">Developed by:</p>
+      <a href="https://x.com/brint" target="_blank" class="developer-link">
+        <img src="images/brint.jpg" alt="Brint's Profile Picture">
+        <span>Brint</span>
+      </a>
+      <a href="https://x.com/amarchandracom" target="_blank" class="developer-link">
+        <img src="images/wow_reasonably_small.gif" alt="Amar's Profile Picture">
+        <span>Amar</span>
+      </a>
     </div>
-
-    <!-- Dropdown for Developer profiles and GitHub link -->
-    <details>
-        <summary>Developers</summary>
-        <div>
-          <p>Follow the developers:</p>
-          <div style="display: flex; flex-direction: column; gap: 10px;">
-            <a href="https://x.com/brint" target="_blank" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: white;">
-              <img src="images/brint.jpg" alt="Brint's Profile Picture" style="width: 40px; height: 40px; border-radius: 50%; border: 2px solid #1da1f2;">
-              <span>Brint</span>
-            </a>
-            <a href="https://x.com/amarchandracom" target="_blank" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: white;">
-              <img src="images/wow_reasonably_small.gif" alt="Amar's Profile Picture" style="width: 40px; height: 40px; border-radius: 50%; border: 2px solid #1da1f2;">
-              <span>Amar</span>
-            </a>
-          </div>
-          <p><a href="https://github.com/brintr/better-twitter" target="_blank">GitHub Repository</a></p>
-        </div>
-      </details>      
   </div>
-
+  <script src="options.js"></script>
 </body>
 </html>

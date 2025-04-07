@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Nest - Test</title>
+    <style>
+        body {
+            width: 300px;
+            padding: 20px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #fff5f5;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0;
+        }
+        h1 {
+            margin: 0;
+            font-size: 18px;
+            color: #e11d48;
+        }
+        .status {
+            padding: 10px;
+            border-radius: 8px;
+            background-color: #fff1f2;
+            font-size: 14px;
+        }
+        .status.active {
+            background-color: #ffe4e6;
+            color: #be123c;
+        }
+        .status.inactive {
+            background-color: #fecdd3;
+            color: #9f1239;
+        }
+        .toggle-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px;
+            border-radius: 8px;
+            background-color: #fff1f2;
+        }
+        .toggle-label {
+            font-size: 14px;
+            font-weight: 500;
+            color: #4c0519;
+        }
+        .toggle {
+            position: relative;
+            display: inline-block;
+            width: 40px;
+            height: 20px;
+        }
+        .toggle input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #fecdd3;
+            transition: .4s;
+            border-radius: 20px;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 2px;
+            bottom: 2px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        input:checked + .slider {
+            background-color: #e11d48;
+        }
+        input:checked + .slider:before {
+            transform: translateX(20px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Nest - Test</h1>
+        </div>
+        <div id="status" class="status">Loading...</div>
+        <div class="toggle-container">
+            <span class="toggle-label">Block Gambling Ads</span>
+            <label class="toggle">
+                <input type="checkbox" id="toggleSwitch">
+                <span class="slider"></span>
+            </label>
+        </div>
+    </div>
+    <script src="popup.js"></script>
+</body>
+</html> 
