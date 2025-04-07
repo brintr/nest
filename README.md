@@ -42,6 +42,7 @@ The extension consists of several key components:
 The ML models are trained on and block:
 
 - Chips.gg gambling advertisements
+- Kalshi gambling advertisements
 
 ## Authors
 
