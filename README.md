@@ -37,10 +37,6 @@ The extension consists of several key components:
 - Chrome Extension API
 - Machine Learning for image comparison
 
-## Contributing
-
-Feel free to submit issues and enhancement requests!
-
 ## Authors
 
 - Brint ([@brint](https://x.com/brint))
