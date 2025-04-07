@@ -11,10 +11,10 @@ async function isGamblingAd(tweetElement) {
         console.log("Checking tweet for gambling ads:", tweetElement);
         const result = await detector.predict(tweetElement);
         console.log("Detection result:", result);
-        if (result) {
-            console.log("Gambling ad detected in tweet");
+        if (result && result.isAd) {
+            console.log("Gambling ad detected in tweet for company:", result.company);
         }
-        return result;
+        return result && result.isAd;
     } catch (error) {
         console.error("Error checking tweet:", error);
         return false;

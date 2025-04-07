@@ -4,6 +4,15 @@ class ImageAdDetector {
         this.normalImages = [];
         this.initialized = false;
         this.videoFrameInterval = 2000; // Check video frames every 2 seconds
+        
+        // Configure thresholds for different types of content
+        this.thresholds = {
+            normal: 0.25,    // Threshold for normal images
+            chips: 0.25,     // Threshold for Chips.gg ads
+            kalshi: 0.80,    // Threshold for Kalshi ads
+            default: 0.25    // Default threshold for any new company
+        };
+        
         console.log("ImageAdDetector constructor called");
     }
 
@@ -78,23 +87,34 @@ class ImageAdDetector {
                 const tweetImg = tweetImages[0];
                 
                 // First check against normal images
+                console.log("Checking against normal images...");
+                let maxNormalSimilarity = 0;
                 for (const normalImg of this.normalImages) {
                     const similarity = await this.compareImages(tweetImg, normalImg);
-                    if (similarity > 0.25) {
+                    maxNormalSimilarity = Math.max(maxNormalSimilarity, similarity);
+                    if (similarity > this.thresholds.normal) {
                         console.log("Found matching normal image! Similarity score:", similarity);
                         return { isAd: false, company: null };
                     }
                 }
+                console.log("Max similarity with normal images:", maxNormalSimilarity);
                 
                 // If not normal, check against ad sets for each company
+                console.log("Checking against ad sets...");
                 for (const [company, adImages] of Object.entries(this.adSets)) {
+                    console.log(`Checking ${company} ads...`);
+                    let maxAdSimilarity = 0;
                     for (const adImg of adImages) {
                         const similarity = await this.compareImages(tweetImg, adImg);
-                        if (similarity > 0.25) {
+                        maxAdSimilarity = Math.max(maxAdSimilarity, similarity);
+                        // Use company-specific threshold or default if not specified
+                        const threshold = this.thresholds[company] || this.thresholds.default;
+                        if (similarity > threshold) {
                             console.log(`Found matching ad image for ${company}! Similarity score:`, similarity);
                             return { isAd: true, company };
                         }
                     }
+                    console.log(`Max similarity with ${company} ads:`, maxAdSimilarity);
                 }
             }
 
