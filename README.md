@@ -45,5 +45,5 @@ The ML models are trained on and block:
 
 ## Authors
 
-- Brint ([@brint](https://x.com/brint))
 - Amar ([@amarchandracom](https://x.com/amarchandracom))
+- Brint ([@brint](https://x.com/brint))
