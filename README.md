@@ -37,11 +37,14 @@ The extension consists of several key components:
 - Chrome Extension API
 - Machine Learning for image comparison
 
-## Contributing
+## Advertisements Blocked
 
-Feel free to submit issues and enhancement requests!
+The ML models are trained on and block:
+
+- Chips.gg gambling advertisements
+- Kalshi gambling advertisements
 
 ## Authors
 
-- Brint ([@brint](https://x.com/brint))
 - Amar ([@amarchandracom](https://x.com/amarchandracom))
+- Brint ([@brint](https://x.com/brint))

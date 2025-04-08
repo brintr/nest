@@ -1,26 +1,39 @@
 class ImageAdDetector {
     constructor() {
-        this.adImages = [];
+        this.adSets = {}; // Object to store ad sets by company
         this.normalImages = [];
         this.initialized = false;
         this.videoFrameInterval = 2000; // Check video frames every 2 seconds
+        
+        // Configure thresholds for different types of content
+        this.thresholds = {
+            normal: 0.25,    // Threshold for normal images
+            chips: 0.25,     // Threshold for Chips.gg ads
+            kalshi: 0.80,    // Threshold for Kalshi ads
+            default: 0.25    // Default threshold for any new company
+        };
+        
         console.log("ImageAdDetector constructor called");
     }
 
     async initialize() {
         try {
             console.log("Initializing ImageAdDetector...");
-            // Load ad images
-            const adImageUrls = await this.getImageUrls('ads');
-            console.log("Found ad image URLs:", adImageUrls);
-            this.adImages = await Promise.all(adImageUrls.map(url => this.loadImage(url)));
-            console.log("Successfully loaded ad images:", this.adImages.length);
             
             // Load normal images
             const normalImageUrls = await this.getImageUrls('normal');
             console.log("Found normal image URLs:", normalImageUrls);
             this.normalImages = await Promise.all(normalImageUrls.map(url => this.loadImage(url)));
             console.log("Successfully loaded normal images:", this.normalImages.length);
+            
+            // Load ad sets for different companies
+            const companies = ['chips', 'other_company']; // Add more companies as needed
+            for (const company of companies) {
+                const adImageUrls = await this.getImageUrls(`ads/${company}`);
+                console.log(`Found ad image URLs for ${company}:`, adImageUrls);
+                this.adSets[company] = await Promise.all(adImageUrls.map(url => this.loadImage(url)));
+                console.log(`Successfully loaded ad images for ${company}:`, this.adSets[company].length);
+            }
             
             this.initialized = true;
             console.log('Image ad detector initialized successfully');
@@ -74,21 +87,34 @@ class ImageAdDetector {
                 const tweetImg = tweetImages[0];
                 
                 // First check against normal images
+                console.log("Checking against normal images...");
+                let maxNormalSimilarity = 0;
                 for (const normalImg of this.normalImages) {
                     const similarity = await this.compareImages(tweetImg, normalImg);
-                    if (similarity > 0.25) {
+                    maxNormalSimilarity = Math.max(maxNormalSimilarity, similarity);
+                    if (similarity > this.thresholds.normal) {
                         console.log("Found matching normal image! Similarity score:", similarity);
-                        return false;
+                        return { isAd: false, company: null };
                     }
                 }
+                console.log("Max similarity with normal images:", maxNormalSimilarity);
                 
-                // If not normal, check against ad images
-                for (const adImg of this.adImages) {
-                    const similarity = await this.compareImages(tweetImg, adImg);
-                    if (similarity > 0.25) {
-                        console.log("Found matching ad image! Similarity score:", similarity);
-                        return true;
+                // If not normal, check against ad sets for each company
+                console.log("Checking against ad sets...");
+                for (const [company, adImages] of Object.entries(this.adSets)) {
+                    console.log(`Checking ${company} ads...`);
+                    let maxAdSimilarity = 0;
+                    for (const adImg of adImages) {
+                        const similarity = await this.compareImages(tweetImg, adImg);
+                        maxAdSimilarity = Math.max(maxAdSimilarity, similarity);
+                        // Use company-specific threshold or default if not specified
+                        const threshold = this.thresholds[company] || this.thresholds.default;
+                        if (similarity > threshold) {
+                            console.log(`Found matching ad image for ${company}! Similarity score:`, similarity);
+                            return { isAd: true, company };
+                        }
                     }
+                    console.log(`Max similarity with ${company} ads:`, maxAdSimilarity);
                 }
             }
 
@@ -98,18 +124,19 @@ class ImageAdDetector {
                 if (videos.length > 0) {
                     console.log(`Found ${videos.length} videos in tweet`);
                     // Only check first video for speed
-                    if (await this.checkVideoForAds(videos[0])) {
-                        console.log("Found ad in video!");
-                        return true;
+                    const videoResult = await this.checkVideoForAds(videos[0]);
+                    if (videoResult.isAd) {
+                        console.log(`Found ad in video for ${videoResult.company}!`);
+                        return videoResult;
                     }
                 }
             }
 
             console.log("No matching ads found in tweet");
-            return false;
+            return { isAd: false, company: null };
         } catch (error) {
             console.error('Error predicting tweet:', error);
-            return false;
+            return { isAd: false, company: null };
         }
     }
 
@@ -159,13 +186,15 @@ class ImageAdDetector {
                         frameImage.onload = resolve;
                     });
 
-                    // Compare frame with ad images
-                    for (const adImg of this.adImages) {
-                        const similarity = await this.compareImages(frameImage, adImg);
-                        if (similarity > 0.25) {
-                            console.log("Found matching ad in video frame!");
-                            resolve(true);
-                            return;
+                    // Compare frame with ad sets for each company
+                    for (const [company, adImages] of Object.entries(this.adSets)) {
+                        for (const adImg of adImages) {
+                            const similarity = await this.compareImages(frameImage, adImg);
+                            if (similarity > 0.25) {
+                                console.log(`Found matching ad in video frame for ${company}!`);
+                                resolve({ isAd: true, company });
+                                return;
+                            }
                         }
                     }
                 } catch (error) {
@@ -175,8 +204,8 @@ class ImageAdDetector {
 
             // Check first frame immediately
             checkFrame().then(result => {
-                if (result) {
-                    resolve(true);
+                if (result && result.isAd) {
+                    resolve(result);
                     return;
                 }
 
@@ -184,16 +213,20 @@ class ImageAdDetector {
                 const interval = setInterval(async () => {
                     if (video.ended || video.paused) {
                         clearInterval(interval);
-                        resolve(false);
+                        resolve({ isAd: false, company: null });
                     } else {
-                        await checkFrame();
+                        const result = await checkFrame();
+                        if (result && result.isAd) {
+                            clearInterval(interval);
+                            resolve(result);
+                        }
                     }
                 }, this.videoFrameInterval);
 
                 // Stop checking after 5 seconds
                 setTimeout(() => {
                     clearInterval(interval);
-                    resolve(false);
+                    resolve({ isAd: false, company: null });
                 }, 5000);
             });
         });
