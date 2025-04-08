@@ -36,18 +36,21 @@
             font-weight: 500;
         }
         .status {
-            padding: 10px;
+            padding: 15px;
             border-radius: 8px;
             background-color: #fff1f2;
             font-size: 14px;
-        }
-        .status.active {
-            background-color: #ffe4e6;
+            text-align: center;
             color: #be123c;
         }
-        .status.inactive {
-            background-color: #fecdd3;
-            color: #9f1239;
+        .counter {
+            padding: 10px;
+            border-radius: 8px;
+            background-color: #ffe4e6;
+            font-size: 14px;
+            text-align: center;
+            color: #be123c;
+            font-weight: 500;
         }
         .toggle-container {
             display: flex;
@@ -110,7 +113,8 @@
             <span class="title-separator">:</span>
             <span class="title-subtext">Better Ad Blocking</span>
         </div>
-        <div id="status" class="status">Loading...</div>
+        <div id="status" class="status">Checking for ads...</div>
+        <div id="counter" class="counter">Ads Removed: 0</div>
         <div class="toggle-container">
             <span class="toggle-label">Block Gambling Ads</span>
             <label class="toggle">

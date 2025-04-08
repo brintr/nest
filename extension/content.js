@@ -5,8 +5,28 @@ console.log("Starting content script.");
 const detector = new window.ImageAdDetector();
 console.log("Created ImageAdDetector instance");
 
+// Initialize extension state
+let isEnabled = true;
+chrome.storage.sync.get(['isEnabled'], function(result) {
+    isEnabled = result.isEnabled !== false;
+    console.log("Initial extension state:", isEnabled);
+});
+
+// Listen for toggle messages
+chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+    if (request.action === "toggle") {
+        isEnabled = request.isEnabled;
+        console.log("Extension state changed to:", isEnabled);
+        if (isEnabled) {
+            hideGamblingAds();
+        }
+    }
+});
+
 // Function to check if a tweet contains gambling ad images
 async function isGamblingAd(tweetElement) {
+    if (!isEnabled) return false;
+    
     try {
         console.log("Checking tweet for gambling ads:", tweetElement);
         const result = await detector.predict(tweetElement);
@@ -23,6 +43,8 @@ async function isGamblingAd(tweetElement) {
 
 // Function to hide gambling ads
 async function hideGamblingAds() {
+    if (!isEnabled) return;
+    
     try {
         console.log("Starting to hide gambling ads...");
         const tweets = document.querySelectorAll('article[data-testid="tweet"]');
@@ -42,6 +64,8 @@ async function hideGamblingAds() {
                 if (container) {
                     container.style.display = 'none';
                 }
+                // Notify popup about removed ad
+                chrome.runtime.sendMessage({action: "updateCounter"});
             }
         }
     } catch (error) {
